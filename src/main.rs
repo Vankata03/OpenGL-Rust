@@ -1,7 +1,15 @@
+use std::env;
+use sdl2::video::GLProfile;
+
 extern crate sdl2;
 extern crate gl;
 
 fn main() {
+
+    // Back Trace for debuging
+    unsafe {
+        env::set_var("RUST_BACKTRACE", "1");
+    }
 
     // Initialize sdl and create the windows with OpenGL
     let sdl = sdl2::init().expect("Failed to initialize SDL2");
@@ -13,16 +21,22 @@ fn main() {
         .build()
         .expect("Failed to create window");
 
-
-    // Get the event pump and gl context
+    // Get the event pump
     let mut event_pump = sdl.event_pump().expect("Failed to get event pump");
-    let gl_context = window.gl_create_context().expect("Failed to create GL Context");
+    
+    // Load OpenGL function pointers
+    let _gl_context = window.gl_create_context().expect("Failed to create GL Context");
+    let _gl = gl::load_with(|s| video_subsystem.gl_get_proc_address(s) as *const _);
+
+    unsafe {
+        gl::ClearColor(0.3, 0.3, 0.5, 1.0);
+    }
 
     // Main program loop
     'main: loop {
+
+        // Listen for events/user input
         for event in event_pump.poll_iter() {
-            
-            // User input
             match event {
                 sdl2::event::Event::Quit { .. } => break 'main,
                 _ => {}
@@ -30,6 +44,11 @@ fn main() {
         }
 
         // Render here
+        unsafe {
+            gl::Clear(gl::COLOR_BUFFER_BIT);
+        }
+
+        window.gl_swap_window();
     }
 
 }
