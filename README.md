@@ -31,6 +31,8 @@ cargo run
 
 ## References & Tutorials
 
+- [Rust Programming Language](https://www.rust-lang.org/)
+- [Main Tutorial - OpenGL in Rust](https://nercury.github.io/rust/opengl/tutorial/2018/02/08/opengl-in-rust-from-scratch-00-setup.html)
 - [LearnOpenGL](https://learnopengl.com/)
 - [OpenGL Tutorial](https://www.opengl-tutorial.org/)
 - [Rust-SDL2 Examples](https://github.com/Rust-SDL2/rust-sdl2)
