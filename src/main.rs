@@ -1,5 +1,4 @@
 use std::env;
-use sdl2::video::GLProfile;
 
 extern crate sdl2;
 extern crate gl;
