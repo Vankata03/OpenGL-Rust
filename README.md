@@ -9,6 +9,7 @@ This project is a basic OpenGL learning playground written in Rust. It uses the 
 - Basic rendering loop
 
 ## Getting Started
+
 To get started with this project, clone the repository:
 
 ```sh

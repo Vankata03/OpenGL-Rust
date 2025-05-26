@@ -1,7 +1,8 @@
-use std::env;
-
 extern crate sdl2;
 extern crate gl;
+
+// Note: Just used for debugging 
+use std::env;
 
 fn main() {
 
@@ -49,5 +50,4 @@ fn main() {
 
         window.gl_swap_window();
     }
-
 }
