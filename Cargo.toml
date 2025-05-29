@@ -4,8 +4,8 @@ version = "0.1.0"
 edition = "2024"
 
 [dependencies]
-sdl2 = "0.37.0"
-gl = "0.14.0"
+sdl2 = "0.37"
+gl = "0.14"
 
 [dev-dependencies]
 cargo-watch = "8.5.3"
