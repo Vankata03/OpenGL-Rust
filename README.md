@@ -5,8 +5,9 @@ This project is a basic OpenGL learning playground written in Rust. It uses the 
 ## Features
 
 - SDL2 window and event handling
-- OpenGL context creation
-- Basic rendering loop
+- OpenGL context creation (core profile 3.3)
+- Basic rendering loop that draws a single RGB triangle
+- Reusable shader/program helpers in `src/render_gl.rs`
 
 ## Getting Started
 
@@ -28,6 +29,34 @@ git clone https://github.com/Vankata03/OpenGL-Rust.git
 
 ```sh
 cargo run
+```
+
+## How the pieces fit together
+
+- `src/main.rs` bootstraps SDL2, requests an OpenGL 3.3 core context, and drives the event/render loop.
+- `src/render_gl.rs` wraps low-level OpenGL calls for compiling shaders and linking them into a program.
+- `src/triangle.vert` & `src/triangle.frag` define a modern programmable pipeline pair that transforms vertex positions and colors into pixels on screen.
+- Vertex data lives in an interleaved VBO (positions + colors) and is referenced via a VAO to keep attribute layout tidy.
+
+## OpenGL pipeline overview
+
+```text
+CPU vertex data (Vec<f32>)
+  │ upload via glBufferData
+  ▼
+Vertex Buffer Object (VBO)
+  │ attribute views recorded in VAO
+  ▼
+Vertex Shader (triangle.vert)
+  │ emits clip-space position + color
+  ▼
+Rasterizer & Interpolation
+  │ generate fragments from the triangle
+  ▼
+Fragment Shader (triangle.frag)
+  │ outputs final RGBA
+  ▼
+Default Framebuffer → SDL2 window swap chain
 ```
 
 ## References & Tutorials

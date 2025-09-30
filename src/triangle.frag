@@ -1,5 +1,7 @@
 #version 330 core
 
+// Fragment shader: receives interpolated RGB colors and writes them to the
+// default framebuffer with an opaque alpha channel.
 in VS_OUTPUT {
     vec3 Color;
 } IN;
